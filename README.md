@@ -42,45 +42,6 @@ Starter template for building a shop's mini app. Main features:
 
 1. Open `localhost:3000` on your browser and start coding 🔥
 
-## Deployment
-
-1. Create a mini app. For instruction on how to create a mini app, please refer to [Coffee Shop Tutorial](https://mini.zalo.me/docs/tutorial/step-1/#1-tạo-một-ứng-dụng-zalo-mini-program-mới-trên-trang-chủ-của-zalo-mini-program). (If you use this source code for development and deployment, you can skip from `zmp init` to the end.)
-
-1. Setup payment methods if you want to accept online payments
-   ![](./docs/payment.png "Payment method")
-
-1. Deploy your mini app to Zalo using the mini app ID created in step 1.
-
-   ```bash
-   zmp login
-   zmp deploy
-   ```
-
-1. Open Zalo and scan the QR code to preview your mini app
-
-## Usage:
-
-The repository contains sample UI components for building your own application. You might wish to integrate internal APIs to fetch products, cart, stores and addresses or modify the code to suit your business needs.
-
-Folder structure:
-
-- **`src`**: Contain all logic source code of your Mini App. Inside `src` folder:
-
-  - **`components`**: reusable components written in React.JS
-  - **`css`**: Stylesheets, pre-processors also supported
-  - **`pages`**: a Page is also a component but will act as an entire view and must be registered inside `app.tsx` (https://mini.zalo.me/docs/zaui/components/router/ZMPRouter/).
-  - **`services`**: reusable logic for complex tasks that should be separated from your component, such as fetching API, getting location from Zalo or caching stuff,...
-  - **`utils`**: reusable utility functions, such as math function, get image url, etc,...
-  - **`dummy`**: create dummy data for this template such as stores and products data,...
-  - **`app.ts`**: entry point of your Mini App
-  - **`hooks.ts`**: building your own Hooks lets you extract component logic into reusable functions, such as adding product to cart, resetting product picked.
-  - **`model.ts`**: contain TypeScript type and interface declarations
-  - **`modules.d.ts`**: contain TypeScript declarations for third party modules
-  - **`state.ts`**: centralized state management (https://recoiljs.org/docs/introduction/installation)
-
-- **`app-config.json`**: Global configuration for your Mini App (https://mini.zalo.me/docs/framework/getting-started/app-config)
-
-The other files (such as `tailwind.config.js`, `vite.config.ts`, `tsconfig.json`, `postcss.config.js`) are configurations for libraries used in your application. Visit the library's documentation to learn how to use them.
 
 ## Recipes
 

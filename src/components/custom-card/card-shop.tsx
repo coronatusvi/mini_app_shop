@@ -4,19 +4,49 @@ import { Store } from "../../models";
 import { getConfig } from "../config-provider";
 import { DEFAULT_OA_ID } from "../../constants";
 import { openChat } from "zmp-sdk";
+import "./card-shop.scss";
+import { followOA, getUserInfo, openMiniApp, unfollowOA } from "zmp-sdk/apis";
 
 const CardShop = ({ storeInfo }: { storeInfo: Store }) => {
   const handleOpenChat = () => {
     const oaId: string = getConfig((c) => c.template.oaIDtoOpenChat || "");
+    console.log("oaId ==> ", oaId, DEFAULT_OA_ID);
 
     openChat({
       type: "oa",
-      id: oaId || DEFAULT_OA_ID,
+      id: "267264371630210613" || DEFAULT_OA_ID,
     });
   };
 
+  const openMiniAppWithTryCatch = async () => {
+    try {
+      const res = await followOA({
+        id: "267264371630210613"
+      });
+      console.log("res", res);
+
+      // <div class="zalo-follow-only-button" data-oaid="267264371630210613"></div>
+    } catch (error) {
+      // xử lý khi gọi api thất bại
+      console.log(error);
+    }
+  };
+
+  const unfollow = async () => {
+    try {
+      const res = await unfollowOA({
+        id: "267264371630210613"
+      });
+      console.log("res", res);
+
+    } catch (error) {
+      // xử lý khi gọi api thất bại
+      console.log(error);
+    }
+  }
+
   return (
-    <div className="flex flex-row justify-between items-center p-4 bg-white">
+    <div className="p-4 bg-white header-info">
       {storeInfo && (
         <div className="flex flex-row items-center">
           <img
@@ -40,14 +70,33 @@ const CardShop = ({ storeInfo }: { storeInfo: Store }) => {
           </div>
         </div>
       )}
-      <Button
-        className="chat-button"
-        variant="primary"
-        size="small"
-        onClick={handleOpenChat}
-      >
-        Nhắn tin
-      </Button>
+      <div
+        className="div-chat-button">
+        <Button
+          className="chat-button"
+          variant="primary"
+          size="small"
+          onClick={handleOpenChat}
+        >
+          Nhắn tin
+        </Button>
+        <Button
+          className="chat-button"
+          variant="primary"
+          size="small"
+          onClick={openMiniAppWithTryCatch}
+        >
+          Follow
+        </Button>
+        {/* <Button
+          className="chat-button"
+          variant="primary"
+          size="small"
+          onClick={unfollow}
+        >
+          Unfollow
+        </Button> */}
+      </div>
     </div>
   );
 };

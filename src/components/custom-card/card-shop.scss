@@ -1,0 +1,15 @@
+.header-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.div-chat-button {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.chat-button {
+    margin-bottom: 5px;
+    width: 90px;
+}

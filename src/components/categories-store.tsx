@@ -25,13 +25,13 @@ const CategoriesStore = ({
 }: CategoryStoreProps) => {
   return (
     <div className="bg-white pb-2">
-      <div className="overflow-x-auto flex flex-row text-base mx-4">
+      <div className="overflow-x-auto flex flex-row text-base mx-6">
         {categories?.map((category, index) => (
           <div
             key={category}
             className={cx(
               "mr-4 flex-none pb-2",
-              activeCate === index
+              activeCate === index  
                 ? "text-primary font-semibold border-b-2 border-primary"
                 : "text-gray-500"
             )}

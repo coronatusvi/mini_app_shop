@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useCallback } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { Input, Page } from "zmp-ui";
+import { Box, Button, Icon, Input, Page } from "zmp-ui";
 import ButtonFixed from "../../components/button-fixed/button-fixed";
 import ButtonPriceFixed from "../../components/button-fixed/button-price-fixed";
 import CategoriesStore from "../../components/categories-store";
 import CardProductHorizontal from "../../components/custom-card/card-product-horizontal";
 import CardShop from "../../components/custom-card/card-shop";
-
+import "../../css/index.scss";
 import { filter } from "../../constants/referrence";
 import { Product } from "../../models";
 import {
@@ -22,14 +22,15 @@ import { useNavigate } from "react-router-dom";
 import useSetHeader from "../../hooks/useSetHeader";
 import { changeStatusBarColor } from "../../services";
 import { getConfig } from "../../components/config-provider";
+import { openMiniApp } from "zmp-sdk/apis";
 
 const HomePage: React.FunctionComponent = () => {
   const store = useRecoilValue(storeState);
   const cart = useRecoilValue(cartState);
   const totalPrice = useRecoilValue(cartTotalPriceState);
 
-  const [activeCate, setActiveCate] = useRecoilState<number>(activeCateState);
-  const [activeFilter, setActiveFilter] =
+  const [ activeCate, setActiveCate ] = useRecoilState<number>(activeCateState);
+  const [ activeFilter, setActiveFilter ] =
     useRecoilState<string>(activeFilterState);
   const storeProductResult = useRecoilValue<Product[]>(storeProductResultState);
   const setSearchProduct = useSetRecoilState(searchProductState);
@@ -40,13 +41,33 @@ const HomePage: React.FunctionComponent = () => {
     setSearchProduct(text);
   }, []);
 
+  const handleOpenApp = async () => {
+    try {
+      await openMiniApp({
+        appId: "3813641274194458022",
+        params: {
+          env: "TESTING", // hoặc "TESTING",
+          version: "21"
+        },
+
+      });
+    } catch (error) {
+      // xử lý khi có lỗi xảy ra
+      console.log("Error:", error);
+    }
+  };
+
   const searchBar = useMemo(
     () => (
-      <Input.Search
-        placeholder="Tìm kiếm sản phẩm"
-        onSearch={handleInputSearch}
-        className="cus-input-search"
-      />
+      <div className="header-zalo">
+        <div onClick={handleOpenApp}>
+          <Icon icon="zi-home" /></div>
+        <Input.Search
+          placeholder="Tìm kiếm sản phẩm"
+          onSearch={handleInputSearch}
+          className="cus-input-search"
+        />
+      </div>
     ),
     []
   );

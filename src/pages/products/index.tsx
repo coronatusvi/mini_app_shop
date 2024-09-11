@@ -47,7 +47,7 @@ const HomePage: React.FunctionComponent = () => {
         appId: "3813641274194458022",
         params: {
           env: "TESTING", // hoặc "TESTING",
-          version: "21"
+          version: "22"
         },
 
       });
